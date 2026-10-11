@@ -1,0 +1,28 @@
+name: Run LL(1) Lexer and Parser
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch: # Isse aap manually bhi run kar sakte hain
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install tabulate
+
+    - name: Run Compiler Project
+      run: python cdd.py
+      
